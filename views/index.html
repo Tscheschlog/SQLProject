@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/styles.css" />
-    <title>Internship Sites</title>
+    <link rel="icon" href="https://fgcucdn.fgcu.edu/favicon.ico" type="image/x-icon">
+    <title>Internship Dashboard</title>
 </head>
 <body>
 
@@ -13,7 +14,7 @@
         <div class="app-header">
           <div class="app-header-left">
             <span class="app-icon"></span>
-            <p class="app-name">Portfolio</p>
+            <p class="app-name">Eagle Hub</p>
             <div class="search-wrapper">
               <input class="search-input" type="text" placeholder="Search">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search" viewBox="0 0 24 24">
@@ -78,9 +79,13 @@
               </svg>
             </a>
           </div>
+          
+          <!--
+            This is the start of the main content container
+          -->  
           <div class="projects-section">
             <div class="projects-section-header">
-              <p>Projects</p>
+              <p>Applications</p>
               <p class="time">December, 12</p>
             </div>
             <div class="projects-section-line">
@@ -98,6 +103,9 @@
                   <span class="status-type">Total Projects</span>
                 </div>
               </div>
+              <!--
+                This is where we can change the view of the internships within the main content
+              -->
               <div class="view-actions">
                 <button class="view-btn list-view" title="List View">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
@@ -117,7 +125,12 @@
                 </button>
               </div>
             </div>
-            <div class="project-boxes jsGridView">
+            <!--
+              This is the start of the grid of elements in the main section
+            -->
+            <div class="project-boxes jsGridView" id="scrolly">
+              <!-- SINGLE BOX ELEMENT START -->
+              <!-- PART 1 -->
               <div class="project-box-wrapper">
                 <div class="project-box" style="background-color: #fee4cb;">
                   <div class="project-box-header">
@@ -131,17 +144,20 @@
                       </button>
                 </div>
               </div>
+              <!-- PART 1 END -->
+              <!-- PART 2 -->
               <div class="project-box-content-header">
                 <p class="box-content-header">Web Designing</p>
                 <p class="box-content-subheader">Prototyping</p>
               </div>
+              <!-- PART 2 END -->
+              <!-- PART 3 -->
               <div class="box-progress-wrapper">
-                <p class="box-progress-header">Progress</p>
-                <div class="box-progress-bar">
-                  <span class="box-progress" style="width: 60%; background-color: #ff942e"></span>
-                </div>
-                <p class="box-progress-percentage">60%</p>
+                <p class="box-progress-header">Google</p>
+                <p class="box-internship-description">This is the description of the role that the employers have put up on their website. This is some more text just cause.</p>
               </div>
+              <!-- PART 3 END -->
+              <!-- PART 4 -->
               <div class="project-box-footer">
                 <div class="participants">
                   <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" alt="participant">
@@ -156,8 +172,11 @@
                   2 Days Left
                 </div>
               </div>
+              <!-- PART 4 END-->
             </div>
           </div>
+          <!-- SINGLE BOX ELEMENT END -->
+          <!-- SINGLE BOX ELEMENT START -->
           <div class="project-box-wrapper">
             <div class="project-box" style="background-color: #e9e7fd;">
               <div class="project-box-header">
@@ -198,6 +217,8 @@
               </div>
             </div>
           </div>
+          <!-- SINGLE BOX ELEMENT END -->
+          <!-- SINGLE BOX ELEMENT START -->
           <div class="project-box-wrapper">
             <div class="project-box">
               <div class="project-box-header">
@@ -238,6 +259,8 @@
               </div>
             </div>
           </div>
+          <!-- SINGLE BOX ELEMENT END -->
+          <!-- SINGLE BOX ELEMENT START -->
           <div class="project-box-wrapper">
             <div class="project-box" style="background-color: #ffd3e2;">
               <div class="project-box-header">
@@ -278,6 +301,8 @@
               </div>
             </div>
           </div>
+          <!-- SINGLE BOX ELEMENT END -->
+          <!-- SINGLE BOX ELEMENT START -->
           <div class="project-box-wrapper">
             <div class="project-box" style="background-color: #c8f7dc;">
               <div class="project-box-header">
@@ -318,6 +343,8 @@
               </div>
             </div>
           </div>
+          <!-- SINGLE BOX ELEMENT END -->
+          <!-- SINGLE BOX ELEMENT START -->
           <div class="project-box-wrapper">
             <div class="project-box" style="background-color: #d5deff;">
               <div class="project-box-header">
@@ -358,8 +385,12 @@
               </div>
             </div>
           </div>
+          <!-- SINGLE BOX ELEMENT END -->
         </div>
       </div>
+      <!--
+          This is the messaging container
+      -->
       <div class="messages-section">
         <button class="messages-close">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle">
@@ -461,5 +492,6 @@
       </div>
     
     <script src="../controllers/script.js" type="text/javascript"></script>
+    <script src="../components/internshipBox.js" type="text/javascript"></script>
 </body>
 </html>
