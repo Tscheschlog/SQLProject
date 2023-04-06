@@ -15,11 +15,8 @@ The application has the following features:
 
 The application is built using the following technologies:
 
-    Frontend: HTML, CSS, JavaScript
-    Database: MySQL
-
-## How to use the application
-
+* Frontend: HTML, CSS, JavaScript
+* Database: MySQL
 
 ## Acknowledgments
 
