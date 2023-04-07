@@ -6,21 +6,81 @@ function limitText(p, limit) {
     }
   }
 
-  
+function getRandomColor() {
+    // Define the range of brightness and saturation
+    const brightnessRange = 40;
+    const saturationRange = 50;
 
-function createInternshipBoxWrapper() {
+    // Generate random HSL values
+    const hue = Math.floor(Math.random() * 360);
+    const saturation = Math.floor(Math.random() * saturationRange) + 50;
+    const lightness = Math.floor(Math.random() * brightnessRange) + 50;
+
+    // Convert HSL to hex format
+    const hslToRgb = (h, s, l) => {
+        let r, g, b;
+
+        if (s === 0) {
+        r = g = b = l; // achromatic
+        } else {
+        const hueToRgb = (p, q, t) => {
+            if (t < 0) t += 1;
+            if (t > 1) t -= 1;
+            if (t < 1 / 6) return p + (q - p) * 6 * t;
+            if (t < 1 / 2) return q;
+            if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+            return p;
+        };
+
+        const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+        const p = 2 * l - q;
+        r = hueToRgb(p, q, h + 1 / 3);
+        g = hueToRgb(p, q, h);
+        b = hueToRgb(p, q, h - 1 / 3);
+        }
+
+        return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+    };
+
+    const [red, green, blue] = hslToRgb(hue / 360, saturation / 100, lightness / 100);
+    const hex = "#" + ((1 << 24) + (red << 16) + (green << 8) + blue).toString(16).slice(1);
+
+    return hex;
+}
+
+function darkenHexColor(hex) {
+    // Convert hex to RGB
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+
+    // Calculate new RGB values by reducing brightness by 20%
+    const newR = Math.max(Math.round(r * 0.8), 0);
+    const newG = Math.max(Math.round(g * 0.8), 0);
+    const newB = Math.max(Math.round(b * 0.8), 0);
+
+    // Convert new RGB values to hex
+    const newHex = "#" + ((1 << 24) + (newR << 16) + (newG << 8) + newB).toString(16).slice(1);
+
+    return newHex;
+}
+  
+// This is the main container (i.e. wrapper) for the individual internship boxes
+function createInternshipBoxWrapper(color, darkColor) {
     const wrapperDiv = document.createElement("div");
     wrapperDiv.classList.add("project-box-wrapper");
   
     const projectDiv = document.createElement("div");
     projectDiv.classList.add("project-box");
-    projectDiv.style.backgroundColor = "#fee4cb";
+    projectDiv.style.backgroundColor = color;
   
     const headerDiv = document.createElement("div");
     headerDiv.classList.add("project-box-header");
   
     const dateSpan = document.createElement("span");
     dateSpan.textContent = "December 10, 2020";
+    dateSpan.style.color = "black";
+    dateSpan.style.fontWeight = "bold";
   
     const moreWrapperDiv = document.createElement("div");
     moreWrapperDiv.classList.add("more-wrapper");
@@ -71,7 +131,8 @@ function createInternshipBoxWrapper() {
     return wrapperDiv;
   }
 
-  function createInternshipHeader(title) {
+  // This handles the 'role' and 'current application status' attributes
+function createInternshipHeader(title) {
     const headerDiv = document.createElement("div");
     headerDiv.classList.add("project-box-content-header");
   
@@ -87,15 +148,16 @@ function createInternshipBoxWrapper() {
     headerDiv.appendChild(subTitleP);
   
     return headerDiv;
-  }
+}
 
-  function createInternshipDescription(description) {
+  // This handles the company 'name' and 'description' 
+function createInternshipDescription(description, color) {
     const wrapperDiv = document.createElement("div");
     wrapperDiv.classList.add("box-progress-wrapper");
   
     const boxDiv = document.createElement("div");
     boxDiv.classList.add("project-box");
-    boxDiv.style.backgroundColor = "#fee4cb";
+    boxDiv.style.backgroundColor = color;
   
     const headerDiv = createInternshipHeader("Web Designing");
     const progressDiv = document.createElement("div");
@@ -119,15 +181,16 @@ function createInternshipBoxWrapper() {
     wrapperDiv.appendChild(boxDiv);
   
     return wrapperDiv;
-  }
+}
   
-  function createInternshipFooter() {
+  // This is the footer of the box
+function createInternshipFooter(color) {
     const footerDiv = document.createElement("div");
     footerDiv.className = "project-box-footer";
    
     const addParticipantBtn = document.createElement("button");
     addParticipantBtn.className = "add-participant";
-    addParticipantBtn.style.color = "#ff942e";
+    addParticipantBtn.style.color = color;
   
     const plusSvg = document.createElementNS(
       "http://www.w3.org/2000/svg",
@@ -150,28 +213,31 @@ function createInternshipBoxWrapper() {
   
     const daysLeftDiv = document.createElement("div");
     daysLeftDiv.className = "days-left";
-    daysLeftDiv.textContent = "2 Days Left";
-    daysLeftDiv.style.color = "#ff942e";
+    daysLeftDiv.textContent = "2 Days Ago";
+    daysLeftDiv.style.color = color;
   
     footerDiv.appendChild(daysLeftDiv);
-  
+
     return footerDiv;
-  }
+}
   
 function createInternshipBox(title, description) {
 
+    const color = getRandomColor();
+    const darkColor = darkenHexColor(color);
+
     const appContent = document.querySelector('.project-boxes');
 
-    const wrapper = createInternshipBoxWrapper();
+    const wrapper = createInternshipBoxWrapper(color, darkColor);
     const projectBox = wrapper.querySelector('.project-box');
 
-    const header = createInternshipHeader(title);
+    const header = createInternshipHeader(title, color);
     projectBox.appendChild(header);
 
-    const desc = createInternshipDescription(description);
+    const desc = createInternshipDescription(description, color);
     projectBox.appendChild(desc);
 
-    const footer = createInternshipFooter();
+    const footer = createInternshipFooter(darkColor);
     projectBox.appendChild(footer);
 
     appContent.appendChild(wrapper);

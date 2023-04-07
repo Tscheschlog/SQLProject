@@ -1,7 +1,14 @@
 // Add the following listeners to the document when loaded:
 document.addEventListener('DOMContentLoaded', function () {
     // Create the internship entries
-     createInternshipBox("Software Engineering Intern", "This is the description of the company and some more stuff please just make sure that this whole thing is not displayed since it is a run on sentence.");
+    createInternshipBox("Software Engineering Intern", "This is the description of the company and some more stuff please just make sure that this whole thing is not displayed since it is a run on sentence.");
+    createInternshipBox("Software Engineering Intern", "This is the description of the company and some more stuff please just make sure that this whole thing is not displayed since it is a run on sentence.");
+    createInternshipBox("Software Engineering Intern", "This is the description of the company and some more stuff please just make sure that this whole thing is not displayed since it is a run on sentence.");
+    createInternshipBox("Software Engineering Intern", "This is the description of the company and some more stuff please just make sure that this whole thing is not displayed since it is a run on sentence.");
+    createInternshipBox("Software Engineering Intern", "This is the description of the company and some more stuff please just make sure that this whole thing is not displayed since it is a run on sentence.");
+    createInternshipBox("Software Engineering Intern", "This is the description of the company and some more stuff please just make sure that this whole thing is not displayed since it is a run on sentence.");
+    createInternshipBox("Software Engineering Intern", "This is the description of the company and some more stuff please just make sure that this whole thing is not displayed since it is a run on sentence.");
+    createInternshipBox("Software Engineering Intern", "This is the description of the company and some more stuff please just make sure that this whole thing is not displayed since it is a run on sentence.");
 
     // Toggle for light and dark themes
     var modeSwitch = document.querySelector('.mode-switch');
