@@ -1,6 +1,34 @@
+function getFormattedDate(date) {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                  'July', 'August', 'September', 'October', 'November', 'December'];
+  const month = months[date.getMonth()];
+  const day = date.getDate();
+  return `${month}, ${day}`;
+}
+
+// Add the following listeners to the document when loaded:
 document.addEventListener('DOMContentLoaded', function () {
+    // Create the internship entries
+    createInternshipBox("Software Engineering Intern", "This is the description of the company and some more stuff please just make sure that this whole thing is not displayed since it is a run on sentence.");
+    createInternshipBox("Software Engineering Intern", "This is the description of the company and some more stuff please just make sure that this whole thing is not displayed since it is a run on sentence.");
+    createInternshipBox("Software Engineering Intern", "This is the description of the company and some more stuff please just make sure that this whole thing is not displayed since it is a run on sentence.");
+    createInternshipBox("Software Engineering Intern", "This is the description of the company and some more stuff please just make sure that this whole thing is not displayed since it is a run on sentence.");
+    createInternshipBox("Software Engineering Intern", "This is the description of the company and some more stuff please just make sure that this whole thing is not displayed since it is a run on sentence.");
+    createInternshipBox("Software Engineering Intern", "This is the description of the company and some more stuff please just make sure that this whole thing is not displayed since it is a run on sentence.");
+    createInternshipBox("Software Engineering Intern", "This is the description of the company and some more stuff please just make sure that this whole thing is not displayed since it is a run on sentence.");
+    createInternshipBox("Software Engineering Intern", "This is the description of the company and some more stuff please just make sure that this whole thing is not displayed since it is a run on sentence.");
+
+    // Set today's date
+    const today = new Date();
+    const formattedDate = getFormattedDate(today);
+    document.querySelector('.time').innerHTML = formattedDate;
+
+    // Toggle for light and dark themes
     var modeSwitch = document.querySelector('.mode-switch');
   
+
+    // Toggle for light themes listener
+    beffb1c32e38f41c7b6466dd2789a8606a254d78
     modeSwitch.addEventListener('click', function () {                     
       document.documentElement.classList.toggle('dark');
       modeSwitch.classList.toggle('active');
@@ -10,17 +38,27 @@ document.addEventListener('DOMContentLoaded', function () {
     var gridView = document.querySelector('.grid-view');
     var projectsList = document.querySelector('.project-boxes');
     
+    // If list view button is clicked
     listView.addEventListener('click', function () {
+
+      // Deactivate grid view
       gridView.classList.remove('active');
-      listView.classList.add('active');
       projectsList.classList.remove('jsGridView');
+
+      // Activate list view
+      listView.classList.add('active');
       projectsList.classList.add('jsListView');
     });
     
+    // If grid view button is clicked
     gridView.addEventListener('click', function () {
-      gridView.classList.add('active');
+
+      // Deactivate list view
       listView.classList.remove('active');
       projectsList.classList.remove('jsListView');
+
+      // Activate grid view
+      gridView.classList.add('active');
       projectsList.classList.add('jsGridView');
     });
     
