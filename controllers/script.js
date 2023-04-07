@@ -1,3 +1,11 @@
+function getFormattedDate(date) {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                  'July', 'August', 'September', 'October', 'November', 'December'];
+  const month = months[date.getMonth()];
+  const day = date.getDate();
+  return `${month}, ${day}`;
+}
+
 // Add the following listeners to the document when loaded:
 document.addEventListener('DOMContentLoaded', function () {
     // Create the internship entries
@@ -9,6 +17,11 @@ document.addEventListener('DOMContentLoaded', function () {
     createInternshipBox("Software Engineering Intern", "This is the description of the company and some more stuff please just make sure that this whole thing is not displayed since it is a run on sentence.");
     createInternshipBox("Software Engineering Intern", "This is the description of the company and some more stuff please just make sure that this whole thing is not displayed since it is a run on sentence.");
     createInternshipBox("Software Engineering Intern", "This is the description of the company and some more stuff please just make sure that this whole thing is not displayed since it is a run on sentence.");
+
+    // Set today's date
+    const today = new Date();
+    const formattedDate = getFormattedDate(today);
+    document.querySelector('.time').innerHTML = formattedDate;
 
     // Toggle for light and dark themes
     var modeSwitch = document.querySelector('.mode-switch');
