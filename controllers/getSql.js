@@ -1,9 +1,11 @@
-function connectDatabase(){
-  const mysql = require('mysql');
-  const connection = mysql.createConnection({
+const mysql = require('mysql');
+
+const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'user',
-  password: '1234567890',
+  user: 'root',
+  password: '1234',
+  port: 3306,
+  database: 'employee_db'
 });
 
 connection.connect((error) => {
@@ -14,8 +16,13 @@ connection.connect((error) => {
   console.log('Connection established sucessfully');
 });
 connection.end((error) => {
+  if (error) {
+    console.error('Error closing the MySQL Database connection', error);
+    return;
+  }
+  console.log('Connection closed successfully');
 });
-}
+
 
 
 function createDatabase(databaseName) {
