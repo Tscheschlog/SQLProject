@@ -59,6 +59,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const formattedDate = getFormattedDate(today);
   document.querySelector(".time").innerHTML = formattedDate;
 
+    // Profile button
+   let profileButton =  document.querySelector(".profile-btn");
+    profileButton.addEventListener("click", function() {
+
+      window.location.href = "profile.html";
+      
+    });
 
   // Get the local mode stored if it exists
   let localMode = parseInt(localStorage.getItem("mode")) || 0;
