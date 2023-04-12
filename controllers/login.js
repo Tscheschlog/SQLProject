@@ -42,8 +42,11 @@ const sqlData = await fetch('http://localhost:3000', requestOptions)
     .then(data => {return data;})
     .catch(error => console.log(error));
 
-  if(sqlData.length == 1)
+  if(sqlData.length == 1) {
+    localStorage.setItem("f_name", sqlData[0]['first_name']);
+    localStorage.setItem("l_name", sqlData[0]['last_name']);
     window.location.href = 'index.html';
+  }
   else
     alert('Please enter a valid email.');
 

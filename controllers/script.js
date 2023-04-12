@@ -67,6 +67,8 @@ document.addEventListener("DOMContentLoaded", function () {
       
     });
 
+    
+
   // Get the local mode stored if it exists
   let localMode = parseInt(localStorage.getItem("mode")) || 0;
 
@@ -74,6 +76,9 @@ document.addEventListener("DOMContentLoaded", function () {
   var modeSwitch = document.querySelector(".mode-switch");
 
   window.onload = function() {
+
+    const studentName = localStorage.getItem("f_name") + " " + localStorage.getItem("l_name")[0] + ".";
+    document.getElementById("std_name").innerHTML = studentName;
 
     localStorage.setItem("mode", localMode.toString());
 

@@ -15,7 +15,7 @@ const connection = mysql.createConnection({
 });
 
 // Route for handling the POST request
-app.post('/selectStudent', (req, res) => {
+app.post('/', (req, res) => {
 
   const { tableName, columns, condition } = req.body;
 
