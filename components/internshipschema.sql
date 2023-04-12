@@ -17,8 +17,8 @@ CREATE TABLE student (
 CREATE TABLE internship(
     internship_id INTEGER PRIMARY KEY NOT NULL AUTOINCREMENT,
     title VARCHAR (50), NOT NULL,
-    start_date VARCHAR,
-    end_date VARCHAR,
+    start_date DATE,
+    end_date DATE,
     status INTEGER (1),
     company_id INTEGER NOT NULL,
     student_id INTEGER,
@@ -50,7 +50,7 @@ CREATE TABLE form (
 
 CREATE TABLE internship_survey(
     survey_id INTEGER PRIMARY KEY NOT NULL AUTOINCREMENT,
-    date_submitted VARCHAR,
+    date_submitted DATE,
     form_id INTEGER NOT NULL,
     internship_id INTEGER NOT NULL,
     student_id INTEGER NOT NULL,
