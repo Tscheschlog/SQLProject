@@ -9,6 +9,23 @@ function limitText(p, limit) {
     }
   }
 
+  function daysSinceDate(date) {
+    // Convert the input date to milliseconds since midnight on Jan 1, 1970
+    const inputTime = date.getTime();
+    
+    // Calculate the current time in milliseconds since midnight on Jan 1, 1970
+    const currentTime = new Date().getTime();
+    
+    // Calculate the difference between the two times in milliseconds
+    const timeDiff = currentTime - inputTime;
+    
+    // Convert the time difference to days
+    const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    
+    // Return the number of days that have passed
+    return daysDiff;
+  }
+
 function getRandomColor() {
     // Define the range of brightness and saturation
     const brightnessRange = 40;
@@ -185,6 +202,8 @@ function createInternshipDescription(description, color) {
   
     return wrapperDiv;
 }
+
+
   
   // This is the footer of the box
 function createInternshipFooter(color) {
@@ -214,9 +233,15 @@ function createInternshipFooter(color) {
   
     plusSvg.appendChild(path);
   
+    const month = 2; 
+    const day = 2; 
+    const year = 2023;
+    let submissionDate = new Date(year, month, day);
+    const dateLabel = daysSinceDate(submissionDate);
+
     const daysLeftDiv = document.createElement("div");
     daysLeftDiv.className = "days-left";
-    daysLeftDiv.textContent = "2 Days Ago";
+    daysLeftDiv.textContent = dateLabel + " days ago";
     daysLeftDiv.style.color = color;
   
     footerDiv.appendChild(daysLeftDiv);
