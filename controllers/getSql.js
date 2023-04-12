@@ -3,7 +3,7 @@ const mysql = require('mysql2');
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'xxxx',
+  password: 'RealmOfTheMadGod1!',
   port: 3306,
   database: 'employee_db'
 });
@@ -16,7 +16,6 @@ connection.connect((error) => {
   console.log('Connection established sucessfully');
 });
 
-selectData('student', '*', 'student_id = 1');
 
 connection.end((error) => {
   if (error) {
@@ -80,6 +79,8 @@ function selectData(tableName, columns, condition) {
   let sql = `SELECT ${columns} FROM ${tableName} WHERE ${condition}`;
   connection.query(sql, (err, result) => {
     if (err) throw err;
+
     console.log(result);
+    return sql;
   });
 }

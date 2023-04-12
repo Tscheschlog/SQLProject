@@ -24,10 +24,28 @@ loginSlideButton.addEventListener('click', () => {
 /*
 * Add event listener to the "Form Submission Login" button
 */
-loginButton.addEventListener('click', () => {
-  
-  // Redirect to index.html
-  window.location.href = 'index.html';
+loginButton.addEventListener('click', async (event) => {
+
+  // Prevent page from reloading cause bad :(
+  event.preventDefault();
+
+  const emailCondition = 'email = \'' + document.getElementById('login_email').value + '\'';
+
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ tableName: 'student', columns: '*', condition: emailCondition })
+  };
+
+const sqlData = await fetch('http://localhost:3000', requestOptions)
+    .then(response => response.json())
+    .then(data => {return data;})
+    .catch(error => console.log(error));
+
+  if(sqlData.length == 1)
+    window.location.href = 'index.html';
+  else
+    alert('Please enter a valid email.');
 
 });
 
