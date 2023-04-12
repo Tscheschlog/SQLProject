@@ -3,7 +3,7 @@ const mysql = require('mysql2');
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'RealmOfTheMadGod1!',
+  password: 'xxxx',
   port: 3306,
   database: 'employee_db'
 });
@@ -91,8 +91,9 @@ async function addStudent(firstName, lastName, email) {
     const connection = await mysql.createConnection({
       host: 'localhost',
       user: 'root',
-      password: 'password',
-      database: 'mydatabase',
+      password: 'xxxx',
+      port: 3306,
+      database: 'employee_db'
     });
 
     const query = 'INSERT INTO student (first_name, last_name, email) VALUES (?, ?, ?)';
