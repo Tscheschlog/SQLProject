@@ -3,7 +3,7 @@ const mysql = require('mysql2');
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'RealmOfTheMadGod1!',
+  password: 'xxxx',
   port: 3306,
   database: 'employee_db'
 });
@@ -84,3 +84,28 @@ function selectData(tableName, columns, condition) {
     return sql;
   });
 }
+
+
+async function addStudent(firstName, lastName, email) {
+  try {
+    const connection = await mysql.createConnection({
+      host: 'localhost',
+      user: 'root',
+      password: 'xxxx',
+      port: 3306,
+      database: 'employee_db'
+    });
+
+    const query = 'INSERT INTO student (first_name, last_name, email) VALUES (?, ?, ?)';
+    const values = [firstName, lastName, email];
+
+    const [rows, fields] = await connection.execute(query, values);
+
+    console.log(`Added ${rows.affectedRows} student record(s)`);
+
+    connection.end(); // close the database connection
+  } catch (error) {
+    console.error(error);
+  }
+}
+

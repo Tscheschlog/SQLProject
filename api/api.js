@@ -2,10 +2,12 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2');
-
+const {addStudent} = require('./getSql')
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
+
+
 
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -28,6 +30,23 @@ app.post('/', (req, res) => {
     res.json(result); // Return the result as JSON
   });
 });
+
+
+app.post('/insertstudent', async (req, res) => {
+  const { firstName, lastName, email } = req.body;
+
+  await addStudent(firstName, lastName, email)
+    .then(() => {
+      res.status(201).send('Student added successfully');
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error adding student');
+    });
+});
+
+
+
 
 // Start the server
 app.listen(3000, () => {
