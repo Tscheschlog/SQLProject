@@ -15,6 +15,9 @@ connection.connect((error) => {
   }
   console.log('Connection established sucessfully');
 });
+
+selectData('student', '*', 'student_id = 1');
+
 connection.end((error) => {
   if (error) {
     console.error('Error closing the MySQL Database connection', error);
@@ -33,11 +36,11 @@ function createDatabase(databaseName) {
   });
 }
 
-function createTable(tableName, columns) {
+function createTable(tableName, ...columns) {
   let sql = `CREATE TABLE ${tableName} (${columns})`;
   connection.query(sql, (err, result) => {
     if (err) throw err;
-    console.log("Table created");
+    console.log("Creating table ${tableName} with columns: ${columns.join(', ')}");
   });
 }
 

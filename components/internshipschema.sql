@@ -19,6 +19,7 @@ CREATE TABLE internship(
     title VARCHAR,
     start_date VARCHAR,
     end_date VARCHAR,
+    status INTEGER (1),
     company_id VARCHAR,
     student_id VARCHAR,
     FOREIGN KEY (company_id) REFERENCES company,
