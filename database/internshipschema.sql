@@ -6,7 +6,7 @@
 -- DROP TABLE tag;
 
 CREATE TABLE student (
-  student_id INTEGER PRIMARY KEY NOT NULL AUTOINCREMENT,
+  student_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   first_name VARCHAR (20) NOT NULL,
   last_name VARCHAR (20) NOT NULL,
   email VARCHAR (50) NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE student (
 );
 
 CREATE TABLE internship(
-    internship_id INTEGER PRIMARY KEY NOT NULL AUTOINCREMENT,
+    internship_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     title VARCHAR (50), NOT NULL,
     start_date DATE,
     end_date DATE,
@@ -28,28 +28,28 @@ CREATE TABLE internship(
 );
 
 CREATE TABLE company (
-    company_id INTEGER PRIMARY KEY NOT NULL AUTOINCREMENT,
+    company_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     name VARCHAR,
     UNIQUE (company_id)
 
 );
 
 CREATE TABLE tag (
-    tag_id INTEGER PRIMARY KEY NOT NULL AUTOINCREMENT,
+    tag_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     name VARCHAR (30),
     UNIQUE (tag_id)
 
 );
 
 CREATE TABLE form (
-    form_id INTEGER PRIMARY KEY NOT NULL AUTOINCREMENT,
+    form_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     title VARCHAR (50),
     description TEXT,
     UNIQUE (form_id)
 );
 
 CREATE TABLE internship_survey(
-    survey_id INTEGER PRIMARY KEY NOT NULL AUTOINCREMENT,
+    survey_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     date_submitted DATE,
     form_id INTEGER NOT NULL,
     internship_id INTEGER NOT NULL,
