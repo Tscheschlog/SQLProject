@@ -81,6 +81,7 @@ button, a {
 .app-content {
   display: flex;
   height: 100%;
+  position: relative;
   overflow: hidden;
   padding: 16px 24px 24px 0;
 }
@@ -103,8 +104,10 @@ button, a {
   margin-left: 10px;
 }
 .app-icon {
+  display: block;
   width: 26px;
   height: 2px;
+  cursor: pointer;
   border-radius: 4px;
   background-color: var(--main-color);
   position: relative;
@@ -225,12 +228,28 @@ button, a {
   width: 100%;
 }
 
+.app-sidebar-show .app-content {
+  position: relative;
+  left: 30px;
+}
+
 .app-sidebar {
   padding: 40px 16px;
+  width: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: -250px; /* Initial position off-screen */
+  transition: left 0.3s ease-in-out;
 }
+
+.app-sidebar.show {
+  left: 0; /* Show sidebar */
+}
+
 .app-sidebar-link {
   color: var(--main-color);
   color: var(--link-color);
@@ -254,10 +273,12 @@ button, a {
 }
 
 .projects-section {
+  width: calc(100% - 60px); /* Subtract the sidebar width from 100% */
+  transition: width 0.2s ease-in-out; /* Add a transition effect for smoother animation */
   flex: 2;
   background-color: var(--projects-section);
   border-radius: 32px;
-  padding: 32px 32px 0 32px;
+  padding: 32px 32px 16px 32px;
   overflow: hidden;
   height: 100%;
   display: flex;

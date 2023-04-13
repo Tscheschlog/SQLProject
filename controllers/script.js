@@ -54,6 +54,16 @@ document.addEventListener("DOMContentLoaded", function () {
     "This is the description of the company and some more stuff please just make sure that this whole thing is not displayed since it is a run on sentence."
   );
 
+const appIcon = document.querySelector('.app-icon');
+const appSidebar = document.querySelector('.app-sidebar');
+const appContent = document.querySelector('.app-content');
+
+
+appIcon.addEventListener('click', () => {
+  appSidebar.classList.toggle('show');
+  appContent.classList.toggle('app-sidebar-show');
+});
+
   // Set today's date
   const today = new Date();
   const formattedDate = getFormattedDate(today);
