@@ -17,17 +17,6 @@ connection.connect((error) => {
 });
 
 
-
-connection.end((error) => {
-  if (error) {
-    console.error('Error closing the MySQL Database connection', error);
-    return;
-  }
-  console.log('Connection closed successfully');
-});
-
-
-
 function createDatabase(databaseName) {
   let sql = `CREATE DATABASE ${databaseName}`;
   connection.query(sql, (err, result) => {
@@ -37,10 +26,13 @@ function createDatabase(databaseName) {
 }
 
 function createTable(tableName, ...columns) {
-  let sql = `CREATE TABLE ${tableName} (${columns})`;
-  connection.query(sql, (err, result) => {
-    if (err) throw err;
-    console.log("Creating table ${tableName} with columns: ${columns.join(', ')}");
+  const sql = `CREATE TABLE IF NOT EXISTS ${tableName} (${columns.join(', ')})`;
+  connection.query(sql, (error, result) => {
+    if (error) {
+      console.error(`Error creating ${tableName} table`, error);
+      return;
+    }
+    console.log(`${tableName} table created successfully`);
   });
 }
 
@@ -139,3 +131,13 @@ module.exports = {
   getFormData,
   getUserFormDataByEmail
 };
+
+connection.end((error) => {
+  if (error) {
+    console.error('Error closing the MySQL Database connection', error);
+    return;
+  }
+  console.log('Connection closed successfully');
+});
+
+
