@@ -109,3 +109,19 @@ async function addStudent(firstName, lastName, email) {
   }
 }
 
+function getFormData(callback) {
+  let sql = `SELECT title, description FROM form`;
+  connection.query(sql, (err, result) => {
+    if (err) throw err;
+    callback(result);
+  });
+}
+
+
+function getUserFormDataByEmail(email, callback) {
+  let sql = `SELECT * FROM internship_survey INNER JOIN form ON internship_survey.form_id = form.form_id WHERE student_id IN (SELECT student_id FROM student WHERE email = '${email}')`;
+  connection.query(sql, (err, result) => {
+    if (err) throw err;
+    callback(result);
+  });
+}
