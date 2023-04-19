@@ -17,6 +17,7 @@ connection.connect((error) => {
 });
 
 
+
 connection.end((error) => {
   if (error) {
     console.error('Error closing the MySQL Database connection', error);
@@ -125,3 +126,16 @@ function getUserFormDataByEmail(email, callback) {
     callback(result);
   });
 }
+
+module.exports = {
+  createDatabase,
+  createTable,
+  dropTable,
+  insertData,
+  updateData,
+  deleteData,
+  selectData,
+  addStudent,
+  getFormData,
+  getUserFormDataByEmail
+};
