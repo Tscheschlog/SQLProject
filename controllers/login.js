@@ -59,5 +59,3 @@ signupButton.addEventListener('click', () => {
 
 });
 
-
-

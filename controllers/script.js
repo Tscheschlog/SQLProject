@@ -77,8 +77,7 @@ appIcon.addEventListener('click', () => {
       
     });
 
-    
-
+  
   // Get the local mode stored if it exists
   let localMode = parseInt(localStorage.getItem("mode")) || 0;
 
