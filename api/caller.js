@@ -1,14 +1,14 @@
-const database = require('./getSql.js');
-
-database.dropTable(student);
-database.dropTable(internship);
-database.dropTable(company);
-database.dropTable(tag);
-database.dropTable(form);
-database.dropTable(internship_survey);
+const createTable = require('./getSql.js');
+const dropTable = require('./getSql.js');
+// dropTable(student);
+// dropTable(internship);
+// dropTable(company);
+// dropTable(tag);
+// dropTable(form);
+// dropTable(internship_survey);
 
 // Creating the student table
-database.createTable(
+createTable(
   'student',
   'student_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT',
   'first_name VARCHAR (20) NOT NULL',
@@ -19,7 +19,7 @@ database.createTable(
 );
 
 // Creating the company table
-database.createTable(
+createTable(
   'company',
   'company_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT',
   'name VARCHAR',
@@ -27,7 +27,7 @@ database.createTable(
 );
 
 // Creating the tag table
-database.createTable(
+createTable(
   'tag',
   'tag_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT',
   'name VARCHAR (30)',
@@ -35,7 +35,7 @@ database.createTable(
 );
 
 // Creating the form table
-database.createTable(
+createTable(
   'form',
   'form_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT',
   'title VARCHAR (50)',
@@ -44,7 +44,7 @@ database.createTable(
 );
 
 // Creating the internship table
-database.createTable(
+createTable(
   'internship',
   'internship_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT',
   'title VARCHAR (50) NOT NULL',
@@ -59,7 +59,7 @@ database.createTable(
 );
 
 // Creating the internship_survey table
-database.createTable(
+createTable(
   'internship_survey',
   'survey_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT',
   'date_submitted DATE',
