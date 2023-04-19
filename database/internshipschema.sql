@@ -51,6 +51,7 @@ CREATE TABLE form (
 CREATE TABLE internship_survey(
     survey_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     date_submitted DATE,
+    text_data TEXT,
     form_id INTEGER NOT NULL,
     internship_id INTEGER NOT NULL,
     student_id INTEGER NOT NULL,
