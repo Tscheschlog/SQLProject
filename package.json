@@ -27,6 +27,7 @@
     "jquery": "^3.6.4",
     "mysql2": "^3.2.0",
     "node-sass": "^8.0.0",
+    "particles.js": "^2.0.0",
     "require": "^2.4.20"
   }
 }
