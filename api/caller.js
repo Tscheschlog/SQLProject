@@ -3,12 +3,14 @@ console.log('getSql:', getSql);
 console.log('Imported createTable:', getSql.createTable);
 console.log('Imported dropTable:', getSql.dropTable);
 console.log('Imported dropTable:', getSql.insertData);
-// dropTable(student);
-// dropTable(internship);
-// dropTable(company);
-// dropTable (tags);
-// dropTable(form);
-// dropTable(internship_survey);
+
+getSql.dropTable('internship_survey');
+getSql.dropTable('internship');
+getSql.dropTable('student');
+getSql.dropTable('company');
+getSql.dropTable ('tag');
+getSql.dropTable('form');
+
 
 // Creating the student table
 getSql.createTable(
