@@ -2,11 +2,11 @@ const getSql = require('./getSql.js');
 console.log('getSql:', getSql);
 console.log('Imported createTable:', getSql.createTable);
 console.log('Imported dropTable:', getSql.dropTable);
-
+console.log('Imported dropTable:', getSql.insertData);
 // dropTable(student);
 // dropTable(internship);
 // dropTable(company);
-// dropTable(tag);
+// dropTable (tags);
 // dropTable(form);
 // dropTable(internship_survey);
 
@@ -82,4 +82,27 @@ getSql.createTable(
   'UNIQUE (survey_id)'
 );
 console.log("Internship survey table created successfully");
+
+getSql.insertData('tag', { tag_id: 1, name: 'Java' });
+getSql.insertData('tag', { tag_id: 2, name: 'C++' });
+getSql.insertData('tag', { tag_id: 3, name: 'C#' });
+getSql.insertData('tag', { tag_id: 4, name: 'C' });
+getSql.insertData('tag', { tag_id: 5, name: 'Python' });
+getSql.insertData('tag', { tag_id: 6, name: 'Assembly' });
+getSql.insertData('tag', { tag_id: 7, name: 'JavaScript' });
+getSql.insertData('tag', { tag_id: 8, name: 'App Developer intern' });
+getSql.insertData('tag', { tag_id: 9, name: 'Backend Developer intern' });
+getSql.insertData('tag', { tag_id: 10, name: 'Frontend Developer intern' });
+getSql.insertData('tag', { tag_id: 11, name: 'FullStack Developer intern' });
+getSql.insertData('tag', { tag_id: 12, name: 'Summer Internship' });
+getSql.insertData('tag', { tag_id: 13, name: 'Fall Internship' });
+getSql.insertData('tag', { tag_id: 14, name: 'Spring Internship' });
+getSql.insertData('tag', { tag_id: 15, name: 'Swift' });
+getSql.insertData('tag', { tag_id: 16, name: 'Kotlin' });
+getSql.insertData('tag', { tag_id: 17, name: 'SQL' });
+getSql.insertData('tag', { tag_id: 18, name: 'HTML' });
+getSql.insertData('tag', { tag_id: 19, name: 'PHP' });
+getSql.insertData('tag', { tag_id: 20, name: 'CSS' });
+
+
 

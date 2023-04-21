@@ -112,3 +112,5 @@ FROM internship_survey isv
 JOIN company c ON isv.company_id = c.company_id
 JOIN internship i ON isv.internship_id = i.internship_id
 JOIN student s ON isv.student_id = s.student_id;
+
+
