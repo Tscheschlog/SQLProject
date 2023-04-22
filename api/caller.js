@@ -85,6 +85,10 @@ getSql.createTable(
 );
 console.log("Internship survey table created successfully");
 
+getSql.addStudent('Luke',  'Hepokoski', 'lkhepokoski2129@eagle.fgcu.edu' );
+getSql.addStudent('Jose',  'Suarez', 'jasuarez4261@eagle.fgcu.edu' );
+
+
 getSql.insertData('tag', { tag_id: 1, name: 'Java' });
 getSql.insertData('tag', { tag_id: 2, name: 'C++' });
 getSql.insertData('tag', { tag_id: 3, name: 'C#' });
@@ -105,6 +109,7 @@ getSql.insertData('tag', { tag_id: 17, name: 'SQL' });
 getSql.insertData('tag', { tag_id: 18, name: 'HTML' });
 getSql.insertData('tag', { tag_id: 19, name: 'PHP' });
 getSql.insertData('tag', { tag_id: 20, name: 'CSS' });
+
 
 
 
