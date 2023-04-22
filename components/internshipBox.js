@@ -86,7 +86,7 @@ function darkenHexColor(hex) {
 }
   
 // This is the main container (i.e. wrapper) for the individual internship boxes
-function createInternshipBoxWrapper(color, darkColor) {
+function createInternshipBoxWrapper(color, darkColor, title, description) {
     const wrapperDiv = document.createElement("div");
     wrapperDiv.classList.add("project-box-wrapper");
   
@@ -107,6 +107,18 @@ function createInternshipBoxWrapper(color, darkColor) {
   
     const moreBtn = document.createElement("button");
     moreBtn.classList.add("project-btn-more");
+
+    moreBtn.onclick = () => {
+
+      localStorage.setItem("formTitle", title);
+      localStorage.setItem("formDescription", description);
+      localStorage.setItem("formStatus", "Pending ...");
+
+      console.log(title);
+      console.log(description);
+
+      window.location.href = "http://127.0.0.1:5501/views/form.html";
+    };
   
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("width", "24");
@@ -256,7 +268,7 @@ function createInternshipBox(title, description) {
 
     const appContent = document.querySelector('.project-boxes');
 
-    const wrapper = createInternshipBoxWrapper(color, darkColor);
+    const wrapper = createInternshipBoxWrapper(color, darkColor, title, description);
     const projectBox = wrapper.querySelector('.project-box');
 
     const header = createInternshipHeader(title, color);
