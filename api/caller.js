@@ -1,16 +1,15 @@
 const getSql = require('./getSql.js');
-console.log('getSql:', getSql);
-console.log('Imported createTable:', getSql.createTable);
-console.log('Imported dropTable:', getSql.dropTable);
-console.log('Imported dropTable:', getSql.insertData);
+// console.log('getSql:', getSql);
+// console.log('Imported createTable:', getSql.createTable);
+// console.log('Imported dropTable:', getSql.dropTable);
+// console.log('Imported dropTable:', getSql.insertData);
 
-getSql.dropTable('internship_survey');
-getSql.dropTable('internship');
-getSql.dropTable('student');
-getSql.dropTable('company');
-getSql.dropTable ('tag');
-getSql.dropTable('form');
-
+// getSql.dropTable('internship_survey');
+// getSql.dropTable('internship');
+// getSql.dropTable('student');
+// getSql.dropTable('company');
+// getSql.dropTable ('tag');
+// getSql.dropTable('form');
 
 // Creating the student table
 getSql.createTable(
@@ -85,8 +84,10 @@ getSql.createTable(
 );
 console.log("Internship survey table created successfully");
 
+
 getSql.addStudent('Luke',  'Hepokoski', 'lkhepokoski2129@eagle.fgcu.edu' );
 getSql.addStudent('Jose',  'Suarez', 'jasuarez4261@eagle.fgcu.edu' );
+getSql.addStudent('Christopher',  'Tscheschlog', 'cgtscheschlog@eagle.fgcu.edu' );
 
 
 getSql.insertData('tag', { tag_id: 1, name: 'Java' });
@@ -110,3 +111,4 @@ getSql.insertData('tag', { tag_id: 18, name: 'HTML' });
 getSql.insertData('tag', { tag_id: 19, name: 'PHP' });
 getSql.insertData('tag', { tag_id: 20, name: 'CSS' });
 
+console.log("DONE CALLER");

@@ -3,9 +3,9 @@ const mysql = require('mysql2');
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'xxxx',
+  password: 'RealmOfTheMadGod1!',
   port: 3306,
-  database: 'employee_db'
+  database: 'intern_db'
 });
 
 connection.connect((error) => {
@@ -84,7 +84,7 @@ async function addStudent(firstName, lastName, email) {
     const query = 'INSERT INTO student (first_name, last_name, email) VALUES (?, ?, ?)';
     const values = [firstName, lastName, email];
 
-    const [rows, fields] = await connection.execute(query, values);
+    const rows = await connection.execute(query, values);
 
     console.log(`Added ${rows.affectedRows} student record(s)`);
   } catch (error) {

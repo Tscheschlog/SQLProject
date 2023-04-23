@@ -7,13 +7,12 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-
-
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'RealmOfTheMadGod1!',
-  database: 'employee_db'
+  port: 3306,
+  database: 'intern_db'
 });
 
 // Route for handling the POST request

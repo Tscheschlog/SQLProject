@@ -2,9 +2,9 @@ const appIcon = document.querySelector('.app-icon');
 const appSidebar = document.querySelector('.app-sidebar');
 const appContent = document.querySelector('.app-content');
 
-document.getElementById("form-desc").innerHTML = localStorage.getItem("formDescription");
-document.getElementById("form-title").innerHTML = localStorage.getItem("formTitle");
-document.getElementById("form-status").innerHTML = localStorage.getItem("formStatus");
+const desc = localStorage.getItem("formDescription");
+const title = localStorage.getItem("formTitle");
+const status = localStorage.getItem("formStatus");
 
 appIcon.addEventListener('click', () => {
     appSidebar.classList.toggle('show');
