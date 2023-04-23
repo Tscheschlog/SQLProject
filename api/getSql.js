@@ -3,7 +3,7 @@ const mysql = require('mysql2');
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'RealmOfTheMadGod1!',
+  password: 'xxxx',
   port: 3306,
   database: 'employee_db'
 });
@@ -17,16 +17,6 @@ connection.connect((error) => {
 });
 
 
-connection.end((error) => {
-  if (error) {
-    console.error('Error closing the MySQL Database connection', error);
-    return;
-  }
-  console.log('Connection closed successfully');
-});
-
-
-
 function createDatabase(databaseName) {
   let sql = `CREATE DATABASE ${databaseName}`;
   connection.query(sql, (err, result) => {
@@ -36,10 +26,13 @@ function createDatabase(databaseName) {
 }
 
 function createTable(tableName, ...columns) {
-  let sql = `CREATE TABLE ${tableName} (${columns})`;
-  connection.query(sql, (err, result) => {
-    if (err) throw err;
-    console.log("Creating table ${tableName} with columns: ${columns.join(', ')}");
+  const sql = `CREATE TABLE IF NOT EXISTS ${tableName} (${columns.join(', ')})`;
+  connection.query(sql, (error, result) => {
+    if (error) {
+      console.error(`Error creating ${tableName} table`, error);
+      return;
+    }
+    console.log(`${tableName} table created successfully`);
   });
 }
 
@@ -88,22 +81,12 @@ function selectData(tableName, columns, condition) {
 
 async function addStudent(firstName, lastName, email) {
   try {
-    const connection = await mysql.createConnection({
-      host: 'localhost',
-      user: 'root',
-      password: 'xxxx',
-      port: 3306,
-      database: 'employee_db'
-    });
-
     const query = 'INSERT INTO student (first_name, last_name, email) VALUES (?, ?, ?)';
     const values = [firstName, lastName, email];
 
     const [rows, fields] = await connection.execute(query, values);
 
     console.log(`Added ${rows.affectedRows} student record(s)`);
-
-    connection.end(); // close the database connection
   } catch (error) {
     console.error(error);
   }
@@ -125,3 +108,28 @@ function getUserFormDataByEmail(email, callback) {
     callback(result);
   });
 }
+
+console.log('createTable:', createTable);
+module.exports = {
+  createDatabase,
+  createTable,
+  dropTable,
+  insertData,
+  updateData,
+  deleteData,
+  selectData,
+  addStudent,
+  getFormData,
+  getUserFormDataByEmail
+};
+
+// connection.end((error) => {
+//   if (error) {
+//     console.error('Error closing the MySQL Database connection', error);
+//     return;
+//   }
+//   console.log('Connection closed successfully');
+// });
+
+
+
