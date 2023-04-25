@@ -26,7 +26,6 @@ app.post('/', (req, res) => {
   connection.query(sql, (err, result) => {
     if (err) throw err;
 
-    console.log(result);
     res.json(result); // Return the result as JSON
   });
 });
@@ -47,8 +46,7 @@ app.post('/insertstudent', async (req, res) => {
 app.post('/getInternships', async (req, res) => {
   const { std_id } = req.body;
 
-  res.json(getSql.getAppliedInternships(std_id));
-  res.send();
+  res.send(await getSql.getAppliedInternships(std_id));
 });
 
 // Start the server

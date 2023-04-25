@@ -21,7 +21,7 @@ function getFormattedDate(date) {
 // Add the following listeners to the document when loaded:
 document.addEventListener("DOMContentLoaded", async function () {
 
-    // const sqlData = await fetch('http://localhost:3000', formO)
+    // const sqlData = await fetch('http://localhost:3000', formOptions)
   //   .then(response => response.json())
   //   .then(data => {return data;})
   //   .catch(error => console.log(error));
@@ -37,29 +37,33 @@ document.addEventListener("DOMContentLoaded", async function () {
      .then(data => {return data;})
      .catch(error => console.log(error));
 
-    const studentOptions = {
+  const studentOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ std_id: currStudent[0].student_id})
   };
 
   const sqlData = await fetch('http://localhost:3000/getInternships', studentOptions)
-  .then(response => response.json())
-  .then(data => {return data;})
-  .catch(error => console.log(error));
-
-  console.log(sqlData);
+    .then(response => response.json())
+    .then(data => { 
+      return data;
+    })
+    .catch(error => console.log(error));
 
   let count = 0;
+
+
   sqlData.forEach((item) => {
 
     createInternshipBox(item.title, item.description);
     count++;
 
   });
-});
+  document.getElementById("pending-count").innerHTML = count;
+  localStorage.setItem("pending_boxes", count);
 
-console.log(localStorage.getItem("pending_boxes"));
+}); 
+
 
 
 const appIcon = document.querySelector('.app-icon');

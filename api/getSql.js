@@ -79,19 +79,19 @@ function selectData(tableName, columns, condition) {
 }
 
 function getAppliedInternships(std_id) {
-  let sql = `SELECT * 
-  FROM form
-  JOIN internship_survey 
-    ON form.form_id = internship_survey.form_id
-  JOIN student 
-    ON student.student_id = internship_survey.student_id
-  WHERE student.student_id = ${std_id}`;
-  connection.query(sql, (err, result) => {
-    if (err) throw err;
+  return new Promise((resolve, reject) => {
+    let sql = `SELECT * 
+    FROM form
+    JOIN internship_survey 
+      ON form.form_id = internship_survey.form_id
+    JOIN student 
+      ON student.student_id = internship_survey.student_id
+    WHERE student.student_id = ${std_id}`;
+    connection.query(sql, (err, result) => {
+      if (err) reject(err);
 
-    console.log(result);
-
-    return result;
+      resolve(result);
+    });
   });
 }
 
