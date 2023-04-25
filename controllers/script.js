@@ -32,11 +32,8 @@ const sqlData = await fetch('http://localhost:3000', requestOptions)
     .then(data => {return data;})
     .catch(error => console.log(error));
 
-
-
     sqlData.forEach((item) => {
       
-      console.log(item.description);
       createInternshipBox(item.title, item.description);
 
     });

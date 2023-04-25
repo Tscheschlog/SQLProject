@@ -80,6 +80,7 @@ function selectData(tableName, columns, condition) {
 
 
 async function addStudent(firstName, lastName, email) {
+  console.log(`adding student`);
   try {
     const query = 'INSERT INTO student (first_name, last_name, email) VALUES (?, ?, ?)';
     const values = [firstName, lastName, email];

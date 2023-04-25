@@ -30,7 +30,6 @@ app.post('/', (req, res) => {
   });
 });
 
-
 app.post('/insertstudent', async (req, res) => {
   const { firstName, lastName, email } = req.body;
 
@@ -43,9 +42,6 @@ app.post('/insertstudent', async (req, res) => {
       res.status(500).send('Error adding student');
     });
 });
-
-
-
 
 // Start the server
 app.listen(3000, () => {

@@ -47,3 +47,15 @@ profileButton.addEventListener("click", function() {
     localStorage.setItem("mode", localMode.toString());
   });
 
+
+  // *********************************
+  //  Organize the Data for each form
+  // *********************************
+
+  const formTitle = document.getElementsByClassName('company-title');
+  const formAboutJob = document.getElementsByClassName('about-job');
+  const formValues = document.getElementsByClassName('value');
+  const formRespn = document.getElementsByClassName('responibilities');
+  const formAboutYou = document.getElementsByClassName('about-you');
+  const formAboutComp = document.getElementsByClassName('about-company');
+  const formQual = document.getElementsByClassName('qualifications');

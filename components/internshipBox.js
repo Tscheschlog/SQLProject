@@ -110,13 +110,14 @@ function createInternshipBoxWrapper(color, darkColor, title, description) {
 
     moreBtn.onclick = () => {
 
+      /// Set the title and description of the clicked project in local storage
       localStorage.setItem("formTitle", title);
       localStorage.setItem("formDescription", description);
       localStorage.setItem("formStatus", "Pending ...");
 
-      console.log(title);
       console.log(description);
 
+      // Go to the form
       window.location.href = "http://127.0.0.1:5501/views/form.html";
     };
   
