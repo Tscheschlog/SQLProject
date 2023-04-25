@@ -64,8 +64,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 }); 
 
-
-
 const appIcon = document.querySelector('.app-icon');
 const appSidebar = document.querySelector('.app-sidebar');
 const appContent = document.querySelector('.app-content');
