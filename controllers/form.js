@@ -106,7 +106,7 @@ profileButton.addEventListener("click", function() {
   
 const applyButton = document.getElementById("apply-button");
 applyButton.addEventListener('click', () => {
-  console.log("CLICK")
+  console.log("REMOVE")
 }); 
 
   
