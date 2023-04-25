@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const {addStudent} = require('./getSql')
 const app = express();
+const getSql = require('./getSql.js');
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -41,6 +42,13 @@ app.post('/insertstudent', async (req, res) => {
       console.error(error);
       res.status(500).send('Error adding student');
     });
+});
+
+app.post('/getInternships', async (req, res) => {
+  const { std_id } = req.body;
+
+  res.json(getSql.getAppliedInternships(std_id));
+  res.send();
 });
 
 // Start the server

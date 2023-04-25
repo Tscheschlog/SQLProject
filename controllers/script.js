@@ -21,32 +21,42 @@ function getFormattedDate(date) {
 // Add the following listeners to the document when loaded:
 document.addEventListener("DOMContentLoaded", async function () {
 
-  const requestOptions = {
+    // const sqlData = await fetch('http://localhost:3000', formO)
+  //   .then(response => response.json())
+  //   .then(data => {return data;})
+  //   .catch(error => console.log(error));
+
+  const formOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ tableName: 'form', columns: '*', condition: 'form_id > 0'})
+    body: JSON.stringify({ tableName: 'student', columns: 'student_id', condition: `email = \'${localStorage.getItem("email")}\'`})
   };
 
-const sqlData = await fetch('http://localhost:3000', requestOptions)
-    .then(response => response.json())
-    .then(data => {return data;})
-    .catch(error => console.log(error));
+  const currStudent = await fetch('http://localhost:3000', formOptions)
+     .then(response => response.json())
+     .then(data => {return data;})
+     .catch(error => console.log(error));
 
-    let count = 0;
-    sqlData.forEach((item) => {
-      
-      
+    const studentOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ std_id: currStudent[0].student_id})
+  };
 
+  const sqlData = await fetch('http://localhost:3000/getInternships', studentOptions)
+  .then(response => response.json())
+  .then(data => {return data;})
+  .catch(error => console.log(error));
 
-      createInternshipBox(item.title, item.description);
-      count++;
+  console.log(sqlData);
 
-    });
+  let count = 0;
+  sqlData.forEach((item) => {
 
-    localStorage.setItem("pending_boxes", count);
+    createInternshipBox(item.title, item.description);
+    count++;
 
-    document.getElementById("pending-count").innerHTML = count;
-
+  });
 });
 
 console.log(localStorage.getItem("pending_boxes"));
@@ -157,3 +167,5 @@ profileButton.addEventListener("click", function() {
     .addEventListener("click", function () {
       document.querySelector(".messages-section").classList.remove("show");
     });
+
+
