@@ -51,11 +51,62 @@ profileButton.addEventListener("click", function() {
   // *********************************
   //  Organize the Data for each form
   // *********************************
+  const formTitle = document.getElementById('company-title');
+  const formAboutJob = document.getElementById('about-job');
+  const formValues = document.getElementById('value');
+  const formRespn = document.getElementById('responibilities');
+  const formAboutYou = document.getElementById('about-you');
+  const formAboutComp = document.getElementById('about-company');
+  const formQual = document.getElementById('qualifications');
+  
+  // h2 element
+  formTitle.innerHTML = desc.substring(desc.indexOf("Company:") + 9, desc.indexOf("About the Job:"));
+  
+  // p element
+  formAboutJob.innerHTML = desc.substring(desc.indexOf("About the Job:") + 15, desc.indexOf("Value:"));
+  
+  // p element
+  formValues.innerHTML = desc.substring(desc.indexOf("Value:") + 7, desc.indexOf("Responsibilities:"));
+  
+  // p element
+  formAboutComp.innerHTML = desc.substring(desc.indexOf("About us:") + 10, desc.indexOf("Qualifications:"));
+  
+  // Create the list elements for each ul
+  function createListElements(section, text) {
+  
+      if(text == "" || text == "\n" || text == " ")
+          return;
+    
+      else {
+        if(text.indexOf(":") != -1)
+          createListElements(section, text.substring(text.indexOf("\n") + 1));
+        else if(text.indexOf("\n") == -1) {
+          let item = document.createElement("li");
+          item.appendChild(document.createTextNode(text));
+          section.appendChild(item);
+        }
+        else {
+          let item = document.createElement("li");
+          item.appendChild(document.createTextNode(text.substring(0, text.indexOf("\n"))));
+          section.appendChild(item);
+          createListElements(section, text.substring(text.indexOf("\n") + 1));
+        }
+      }
+  }
+  
+  
+  // ul and li elements
+  createListElements(formRespn, desc.substring(desc.indexOf("Responsibilities:"), desc.indexOf("About you:")));
+  
+  //  ul and li elements
+  createListElements(formAboutYou, desc.substring(desc.indexOf("About you:"), desc.indexOf("About us:")));
+  
+  // ul and li elements 
+  createListElements(formQual, desc.substring(desc.indexOf("Qualifications:")));
+  
+const applyButton = document.getElementById("apply-button");
+applyButton.addEventListener('click', () => {
+  console.log("CLICK")
+}); 
 
-  const formTitle = document.getElementsByClassName('company-title');
-  const formAboutJob = document.getElementsByClassName('about-job');
-  const formValues = document.getElementsByClassName('value');
-  const formRespn = document.getElementsByClassName('responibilities');
-  const formAboutYou = document.getElementsByClassName('about-you');
-  const formAboutComp = document.getElementsByClassName('about-company');
-  const formQual = document.getElementsByClassName('qualifications');
+  

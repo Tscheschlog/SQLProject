@@ -24,17 +24,26 @@ formAboutComp.innerHTML = desc.substring(desc.indexOf("About us:"), desc.indexOf
 // 
 // ****************************************************************************************
 
-// ul and li elements
-console.log(desc.substring(desc.indexOf("Responsibilities:"), desc.indexOf("About you:")));
 
-formRespn.innerHTML = desc.substring(desc.indexOf("Responsibilities:"), desc.indexOf("About you:"));
+function createListElements(section, text) {
+
+    if(text == "")
+        return;
+
+    const item = document.createElement("li");
+    item.appendChild(document.createTextNode(text.substring(0, text.indexOf("\n"))));
+    section.appendChild(item);
+    console.log(text);
+    createListElements(section, text.substring(text.indexOf("\n") + 1));
+}
+
+
+// ul and li elements
+createListElements(formRespn, desc.substring(desc.indexOf("Responsibilities:"), desc.indexOf("About you:")));
 
 //  ul and li elements
-console.log(desc.substring(desc.indexOf("About you:"), desc.indexOf("About us:")));
-
-formAboutYou.innerHTML = desc.substring(desc.indexOf("About you:"), desc.indexOf("About us:"))
+createListElement(formAboutComp, desc.substring(desc.indexOf("About you:"), desc.indexOf("About us:")));
 
 // ul and li elements 
-console.log(desc.substring(desc.indexOf("Qualifications:")));
+createListElements(formQual, desc.substring(desc.indexOf("Qualifications:")));
 
-formQual.innerHTML = desc.substring(desc.indexOf("Qualifications:"));
