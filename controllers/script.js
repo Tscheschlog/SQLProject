@@ -32,13 +32,21 @@ const sqlData = await fetch('http://localhost:3000', requestOptions)
     .then(data => {return data;})
     .catch(error => console.log(error));
 
+    let count = 0;
     sqlData.forEach((item) => {
       
       createInternshipBox(item.title, item.description);
+      count++;
 
     });
 
+    localStorage.setItem("pending_boxes", count);
+
+    document.getElementById("pending-count").innerHTML = count;
+
 });
+
+console.log(localStorage.getItem("pending_boxes"));
 
 
 const appIcon = document.querySelector('.app-icon');
@@ -97,7 +105,6 @@ profileButton.addEventListener("click", function() {
       document.documentElement.classList.toggle("dark");
       modeSwitch.classList.toggle("active");
     }
-    console.log(localMode);
   };
 
   // Toggle for light themes listener
