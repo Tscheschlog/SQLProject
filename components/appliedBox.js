@@ -1,4 +1,3 @@
-
 // -------------------------------------------------------------------------------------------------
 // Helper functions
 // -------------------------------------------------------------------------------------------------
@@ -115,6 +114,8 @@ function createInternshipBoxWrapper(color, darkColor, title, description) {
       localStorage.setItem("formDescription", description);
       localStorage.setItem("formStatus", "Pending ...");
 
+      console.log(description);
+
       // Go to the form
       window.location.href = "http://127.0.0.1:5501/views/form.html";
     };
@@ -171,7 +172,12 @@ function createInternshipHeader(title) {
     mainTitleP.classList.add("box-content-header");
     mainTitleP.textContent = title;
   
+    const subTitleP = document.createElement("p");
+    subTitleP.classList.add("box-content-subheader");
+    subTitleP.textContent = "Pending ...";
+  
     headerDiv.appendChild(mainTitleP);
+    headerDiv.appendChild(subTitleP);
   
     return headerDiv;
 }
