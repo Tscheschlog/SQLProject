@@ -198,7 +198,7 @@ function createInternshipDescription(description, color) {
   
     const progressHeaderP = document.createElement("p");
     progressHeaderP.classList.add("box-progress-header");
-    progressHeaderP.textContent = "Google";
+    progressHeaderP.textContent = description.substring(description.indexOf(":") + 1, description.indexOf("\n"));
   
     const internshipDescP = document.createElement("p");
     internshipDescP.classList.add("box-internship-description");
