@@ -43,6 +43,11 @@ app.post('/insertstudent', async (req, res) => {
     });
 });
 
+app.post('/insertInternSurvery', async (req, res) => {
+  getSql.insertData('internship_survey', req.body);
+  console.log("Added");
+})
+
 app.post('/getInternships', async (req, res) => {
   const { std_id } = req.body;
 

@@ -125,7 +125,26 @@ createListElements(formQual, desc.substring(desc.indexOf("Qualifications:")));
 const applyButton = document.getElementById("apply-button");
 applyButton.addEventListener('click', async () => {
 
-  // 
+  // const studOptions = {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify({ tableName: 'student', columns: 'student_id', condition: `email = \'${localStorage.getItem("email")}\'`})
+  // };
+  // const currStudent = await fetch('http://localhost:3000', studOptions)
+  //    .then(response => response.json())
+  //    .then(data => {return data;})
+  //    .catch(error => console.log(error));
+
+  // const formOptions = {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify({ date_submitted: getTodaysDate(), text_data: "", form_id: , internship_id: , student_id: currStudent[0].student_id, tag_id: 2})
+  // };
+
+  // const intern = await fetch('http://localhost:3000', formOptions)
+  //    .then(response => response.json())
+  //    .then(data => {return data;})
+  //    .catch(error => console.log(error));
 
 
   console.log(getTodaysDate())
