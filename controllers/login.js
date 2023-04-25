@@ -54,6 +54,8 @@ loginButton.addEventListener('click', async (event) => {
     if(sqlData.length == 1) {
       localStorage.setItem("f_name", sqlData[0]['first_name']);
       localStorage.setItem("l_name", sqlData[0]['last_name']);
+      localStorage.setItem("email", sqlData[0]['email']);
+
       window.location.href = 'index.html';
     }
     else
@@ -75,11 +77,12 @@ signupButton.addEventListener('click', async () => {
       .then(data => {return data;})
       .catch(error => console.log(error));
 
-  localStorage.setItem("f_name", fn);
-  localStorage.setItem("l_name", ln);
+    localStorage.setItem("f_name", fn);
+    localStorage.setItem("l_name", ln);
+    localStorage.setItem("email", email);
 
-  // Redirect to index.html
-  window.location.href = 'index.html';
+    // Redirect to index.html
+    window.location.href = 'index.html';
 
 });
 

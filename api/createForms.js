@@ -1,5 +1,11 @@
 const getSql = require('./getSql.js');
 
+
+getSql.insertData('internship', {title: 'Data Science Intern', start_date: '2023-04-25', end_date: '2023-10-25', status: '0', company_id: 2, student_id: 5})
+
+// getSql.insertData('company', {name: 'Virtual Solutions Inc.'});
+// getSql.insertData('company', {name: 'Data Insights Co.'});
+
 // getSql.deleteData('form', 'title = \'Data Science Intern\'');
 // console.log("DROPPED");
 

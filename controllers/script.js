@@ -35,6 +35,9 @@ const sqlData = await fetch('http://localhost:3000', requestOptions)
     let count = 0;
     sqlData.forEach((item) => {
       
+      
+
+
       createInternshipBox(item.title, item.description);
       count++;
 
