@@ -78,6 +78,17 @@ app.post('/getInternships', async (req, res) => {
   res.send(await getSql.getAppliedInternships(std_id));
 });
 
+app.post('/insertForm', async (req, res) => {
+
+  try {
+    getSql.insertData('form', req.body);
+    res.status(201).send('Success in adding form');
+  }
+  catch(e) {
+    res.status(500).send('Error adding form');
+  }
+});
+
 // Start the server
 app.listen(3000, () => {
   console.log('Server listening on port 3000');
