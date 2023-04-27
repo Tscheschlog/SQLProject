@@ -17,17 +17,24 @@ const connection = mysql.createConnection({
 });
 
 // Route for handling the POST request
-app.post('/', (req, res) => {
+app.post('/', async (req, res) => {
 
   const { tableName, columns, condition } = req.body;
 
-  // Call the selectData function with the provided parameters
-  const sql = `SELECT ${columns} FROM ${tableName} WHERE ${condition}`;
-  connection.query(sql, (err, result) => {
-    if (err) throw err;
+  res.send(await getSql.selectData(tableName, columns, condition));
+  // // Call the selectData function with the provided parameters
+  // const sql = `SELECT ${columns} FROM ${tableName} WHERE ${condition}`;
+  // connection.query(sql, (err, result) => {
+  //   if (err) throw err;
 
-    res.json(result); // Return the result as JSON
-  });
+  //   res.json(result); // Return the result as JSON
+  // });
+});
+
+app.post('/getCompanyID', async (req, res) => {
+  const { companyName } = req.body;
+
+  res.send(await getSql.selectData('company', 'company_id', `name = '${companyName}`));
 });
 
 app.post('/insertstudent', async (req, res) => {
@@ -41,6 +48,16 @@ app.post('/insertstudent', async (req, res) => {
       console.error(error);
       res.status(500).send('Error adding student');
     });
+});
+
+app.post('/insertInternship', async (req, res) => {
+  // Set the internship values
+  getSql.insertData('internship', req.body);
+  console.log("Added internship");
+
+  // Send the internship id of the internship that was added
+  const result = await getSql.selectData('internship', 'internship_id', `title = '${req.body.title}' and company_id = ${req.body.company_id} and student_id = ${req.body.student_id}`);
+  res.send(result);
 });
 
 app.post('/insertInternSurvery', async (req, res) => {

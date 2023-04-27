@@ -18,7 +18,7 @@ CREATE TABLE internship(
     internship_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     title VARCHAR (50), NOT NULL,
     start_date DATE,
-    end_date DATE,
+    end_date DATE,  
     status INTEGER (1),
     company_id INTEGER NOT NULL,
     student_id INTEGER,

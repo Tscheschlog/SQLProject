@@ -122,32 +122,120 @@ createListElements(formAboutYou, desc.substring(desc.indexOf("About you:"), desc
 // ul and li elements 
 createListElements(formQual, desc.substring(desc.indexOf("Qualifications:")));
 
+// ***********************************
+// Display form for user to fill out
+// ***********************************
+
 const applyButton = document.getElementById("apply-button");
-applyButton.addEventListener('click', async () => {
+const modalTitle = document.getElementById("modal-title");
+const modal = document.getElementById("apply-modal");
+const closeButton = document.querySelector(".close");
+const form = document.getElementById("apply-form");
+const appSubmitButton = document.getElementById("submit-application-button");
 
-  // const studOptions = {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify({ tableName: 'student', columns: 'student_id', condition: `email = \'${localStorage.getItem("email")}\'`})
-  // };
-  // const currStudent = await fetch('http://localhost:3000', studOptions)
-  //    .then(response => response.json())
-  //    .then(data => {return data;})
-  //    .catch(error => console.log(error));
+modalTitle.innerHTML = "Application for " + formTitle.innerHTML;
 
-  // const formOptions = {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify({ date_submitted: getTodaysDate(), text_data: "", form_id: , internship_id: , student_id: currStudent[0].student_id, tag_id: 2})
-  // };
+applyButton.addEventListener('click', () => {
+  modal.style.display = "block";
+});
 
-  // const intern = await fetch('http://localhost:3000', formOptions)
-  //    .then(response => response.json())
-  //    .then(data => {return data;})
-  //    .catch(error => console.log(error));
+closeButton.addEventListener('click', () => {
+  modal.style.display = "none";
+});
+
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  // You can add code here to handle the form submission
+  // For example, you can send the form data to a server using AJAX or fetch API
+
+  // internship title
+  let title = localStorage.getItem("formTitle");
+
+  // todays date
+  let startDate = getTodaysDate();
+
+  // six month date
+  let endDate = getSixMonthsFromToday();
+
+  // status = 0 -> pending
+  let status = 0;
+
+  // company id
+  const compOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ tableName: 'company', columns: 'company_id', condition: `name = '${desc.substring(desc.indexOf("Company:") + 9, desc.indexOf("About the Job:")).trim()}'`})
+  };
+
+  // console.log(desc.substring(desc.indexOf("Company:") + 9, desc.indexOf("About the Job:")));
+
+  const currCompany = await fetch('http://localhost:3000', compOptions)
+     .then(response => response.json())
+     .then(data => {return data;})
+     .catch(error => console.log(error));
+
+  let companyId = currCompany[0].company_id;
 
 
-  console.log(getTodaysDate())
-}); 
+  // student id
+  const stdOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ tableName: 'student', columns: 'student_id', condition: `email = '${localStorage.getItem("email")}'`})
+  };
+
+  const currStudent = await fetch('http://localhost:3000', stdOptions)
+     .then(response => response.json())
+     .then(data => {return data;})
+     .catch(error => console.log(error));
+
+  let studentId = currStudent[0].student_id;
+
+  const internOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ title: `${title}`, start_date: `${startDate}`, end_date: `${endDate}`, status: 0, company_id: parseInt(companyId), student_id: parseInt(studentId) })
+  };
+
+  const createInternship = await fetch('http://localhost:3000/insertInternship', internOptions)
+     .then(response => response.json())
+     .then(data => {return data;})
+     .catch(error => console.log(error));
+
+  console.log(createInternship);
+  let internshipId = createInternship[0].internship_id;
+
+  // Get the form ID
+  let fTitle = localStorage.getItem("formTitle");
+  let fDesc = localStorage.getItem("formDescription");
+
+  const formOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ tableName: 'form', columns: 'form_id', condition: `title = '${fTitle}'` })
+  };
+
+  const getFormId = await fetch('http://localhost:3000', formOptions)
+     .then(response => response.json())
+     .then(data => {return data;})
+     .catch(error => console.log(error));
+
+  let formId = getFormId[0].form_id;
+
+  const internSurveryOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ date_submitted: startDate, text_data: document.getElementById("cover-letter").value, form_id: formId, internship_id: internshipId, student_id: studentId, tag_id: 2 })
+  };
+
+  await fetch('http://localhost:3000/insertInternSurvery', internSurveryOptions)
+     .then(response => response.json())
+     .then(data => {return data;})
+     .catch(error => console.log(error));
+
+
+
+  console.log("Application Submitted!");
+});
 
   

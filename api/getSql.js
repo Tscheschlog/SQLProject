@@ -69,12 +69,12 @@ function deleteData(tableName, condition) {
 }
 
 function selectData(tableName, columns, condition) {
-  let sql = `SELECT ${columns} FROM ${tableName} WHERE ${condition}`;
-  connection.query(sql, (err, result) => {
-    if (err) throw err;
-
-    console.log(result);
-    return sql;
+  return new Promise((resolve, reject) => {
+    let sql = `SELECT ${columns} FROM ${tableName} WHERE ${condition}`;
+    connection.query(sql, (err, result) => {
+      if (err) reject(err);
+      else resolve(result);
+    });
   });
 }
 

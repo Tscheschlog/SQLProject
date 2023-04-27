@@ -87,6 +87,34 @@
           <button type="submit" id="apply-button">Apply</button>
         </div>
       </div>
+      <div id="apply-modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2 id="modal-title">Application for</h2>
+          <form id="apply-form">
+            <div>
+              <span class="entry">
+                <label for="first-name">First Name *</label>
+                <input type="text" id="first-name" name="first-name" required>
+                <label for="middle-name">Middle Name</label>
+                <input type="text" id="middle-name" name="middle-name">
+                <label for="last-name">Last Name *</label>
+                <input type="text" id="last-name" name="last-name" required>
+              </span>
+            </div>
+            
+            <div>
+              <label for="resume">Resume *</label>
+              <input type="file" id="resume" name="resume" accept=".pdf" required>
+            </div>
+            
+            <label for="cover-letter">Cover Letter *</label>
+            <textarea id="cover-letter" name="cover-letter" rows="5" required></textarea>
+
+            <button id="submit-application-button" type="submit">Submit Application</button>
+          </form>
+        </div>
+      </div>
 </div>
     <script src="../controllers/form.js" type="text/javascript"></script>
 
