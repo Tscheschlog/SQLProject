@@ -228,14 +228,15 @@ form.addEventListener('submit', async (event) => {
     body: JSON.stringify({ date_submitted: startDate, text_data: document.getElementById("cover-letter").value, form_id: formId, internship_id: internshipId, student_id: studentId, tag_id: 2 })
   };
 
+  // Go back to the main page
+  window.location.href = "http://127.0.0.1:5501/views/index.html";
+
   await fetch('http://localhost:3000/insertInternSurvery', internSurveryOptions)
      .then(response => response.json())
      .then(data => {return data;})
      .catch(error => console.log(error));
 
-
-
-  console.log("Application Submitted!");
+  alert("Application Submitted!");
 });
 
   

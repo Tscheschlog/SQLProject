@@ -60,8 +60,8 @@ function updateData(tableName, data, condition) {
   });
 }
 
-function deleteData(tableName, condition) {
-  let sql = `DELETE FROM ${tableName} WHERE ${condition}`;
+function deleteData(tableName) {
+  let sql = `DELETE FROM ${tableName}`;
   connection.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Data deleted");

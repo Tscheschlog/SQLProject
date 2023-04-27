@@ -31,6 +31,13 @@ app.post('/', async (req, res) => {
   // });
 });
 
+app.post('/deleteData', (req, res) => {
+
+  // Delete the data!
+  getSql.deleteData(req.body.tableName);
+
+});
+
 app.post('/getCompanyID', async (req, res) => {
   const { companyName } = req.body;
 

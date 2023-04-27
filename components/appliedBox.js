@@ -117,7 +117,7 @@ function createInternshipBoxWrapper(color, darkColor, title, description) {
       console.log(description);
 
       // Go to the form
-      window.location.href = "http://127.0.0.1:5501/views/form.html";
+      window.location.href = "http://127.0.0.1:5501/views/appliedForm.html";
     };
   
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
